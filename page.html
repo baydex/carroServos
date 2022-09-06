@@ -1,0 +1,32 @@
+<!DOCTYPE html>                                                                       
+<html>                                                                                
+  <head>                                                                             
+      <meta charset=utf-8>                                                            
+      <meta name='viewport' content='initial-scale=1, maximum-scale=1'>               
+                                                                                      
+                                                                                      
+      <title>Control Carro ESP8266</title>                                
+  </head>                                                                             
+  <body>                                                                              
+    
+
+    <script>                 
+      
+      var connection = new WebSocket('ws://'+location.hostname+':81/', ['arduino']); 
+                                                                                     
+      connection.onopen = function () {      
+        alert("conectado") ;                            
+      }
+      connection.onmessage = function (event) {                                      
+        console.log('Servidor: ', event.data);                                                                             
+      }
+      connection.onerror = function (error) {                                        
+        console.log('F: ', error);                                    
+      }
+      function sendMessage(message){
+        connection.send(message);
+      }    
+       
+    </script>                                                                         
+  </body>                                                                             
+</html>
